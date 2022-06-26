@@ -24,7 +24,11 @@
                 A list of all the contacts
               </h2>
               <div hold class="-mx-2 text-sm text-gray-700">
-                <div v-for="person in peopleStore.people" :key="person.id" :value="person">
+                <router-link
+                  v-for="person in peopleStore.people"
+                  :key="person.id"
+                  :to="{ name: 'people-detail', params: { id: person.id } }"
+                >
                   <div
                     class="group flex cursor-pointer select-none items-center rounded-md p-2 hover:bg-gray-100 hover:text-gray-900"
                   >
@@ -37,7 +41,7 @@
                     />
                     <StarIcon v-else class="w-5 h-5 ml-3 flex-none text-gray-500" aria-hidden="true" />
                   </div>
-                </div>
+                </router-link>
               </div>
             </div>
           </div>

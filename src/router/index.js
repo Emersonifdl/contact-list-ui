@@ -8,8 +8,8 @@ const routes = [
     name: 'Home',
     component: Home,
     children: [
-      { path: '', component: PeopleList },
-      { path: 'people/:id', component: () => import('@/views/People/PeopleDetail.vue') },
+      { path: '', name: 'people-list', component: PeopleList },
+      { path: 'people/:id', name: 'people-detail', component: () => import('@/views/People/PeopleDetail.vue') },
     ],
   },
 ];
