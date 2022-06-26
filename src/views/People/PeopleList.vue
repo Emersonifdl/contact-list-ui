@@ -20,10 +20,13 @@
               @scroll.passive="onScroll"
               ref="scroll"
             >
-              <h2 v-if="query === ''" class="mt-2 mb-4 text-xs font-semibold text-gray-500">
-                A list of all the contacts
-              </h2>
-              <div hold class="-mx-2 text-sm text-gray-700">
+              <div class="flex justify-between border-b">
+                <h1 class="mb-4 text-xs font-semibold text-gray-500">A list of contacts</h1>
+                <router-link :to="{ name: 'people-create' }">
+                  <UserAddIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
+                </router-link>
+              </div>
+              <div class="-mx-2 text-sm text-gray-700">
                 <router-link
                   v-for="person in peopleStore.people"
                   :key="person.id"
@@ -35,7 +38,7 @@
                     <img :src="person.avatar" alt="" class="h-6 w-6 flex-none rounded-full" />
                     <span class="ml-3 flex-auto truncate">{{ person.name }}</span>
                     <StarIcon
-                      v-if="person.is_favorite"
+                      v-if="person.favorite"
                       class="w-5 h-5 ml-3 flex-none text-yellow-500"
                       aria-hidden="true"
                     />
@@ -57,24 +60,19 @@
 </template>
 
 <script setup>
-import { onMounted, computed, ref, watch, reactive } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import { SearchIcon, StarIcon, PlusIcon, UsersIcon, UserAddIcon } from '@heroicons/vue/solid';
 import usePeopleStore from '@/store/peopleStore';
-import { SearchIcon, StarIcon } from '@heroicons/vue/solid';
-import { UsersIcon } from '@heroicons/vue/outline';
+
 const peopleStore = usePeopleStore();
+
 const query = ref('');
+const scroll = ref();
 
-const filters = reactive({
-  search: '',
-});
-
-const scroll = ref(null);
-
-onMounted(async () => {
-  await init();
-});
+onMounted(async () => await init());
 
 const init = async () => {
+  peopleStore.clearFilters();
   await peopleStore.getPeople();
 };
 

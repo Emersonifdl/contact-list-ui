@@ -1,20 +1,20 @@
-import PeopleService from "@/services/peopleService";
-import { defineStore } from "pinia";
-export default defineStore("people", {
+import PeopleService from '@/services/peopleService';
+import { defineStore } from 'pinia';
+export default defineStore('people', {
   state: () => {
     return {
       people: [],
+      person: {},
       loading: false,
       meta: {},
       filters: {
-        search: "",
+        search: '',
         page: 1,
       },
     };
   },
   actions: {
     async getPeople(search) {
-      this.loading = true;
       if (search) {
         this.filters.search = search;
         this.filters.page = 1;
@@ -22,7 +22,6 @@ export default defineStore("people", {
       const { data } = await PeopleService.getPeople(this.filters);
       this.meta = data.meta;
       this.people = data.data;
-      this.loading = false;
     },
     async getMorePeople() {
       this.loading = true;
@@ -35,6 +34,12 @@ export default defineStore("people", {
       }
 
       this.loading = false;
+    },
+    clearFilters() {
+      this.filters = {
+        search: '',
+        page: 1,
+      };
     },
   },
 });
