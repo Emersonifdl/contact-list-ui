@@ -1,41 +1,35 @@
 # contact-list-ui
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🚀 Installation
 
-## Recommended IDE Setup
+Clone the repository:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```sh
+git clone git@github.com:Emersonifdl/contact-list-ui.git
+```
 
-## Customize configuration
+Switch to the repo folder and copy the example env file and make the required configuration changes in the .env file:
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+```sh
+cp .env.example .env
+```
 
-## Project Setup
+Install the dependencies
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## ☕ Get Started
+
+Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+Compile and Minify for Production
 
 ```sh
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
